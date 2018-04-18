@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+# Cristina del Río
 #
 # Simple XML parser for the RSS channel from BarraPunto
 # Jesus M. Gonzalez-Barahona
@@ -44,8 +44,7 @@ class myContentHandler(ContentHandler):
                 self.theContent = ""
             elif name == 'link':
                 self.link = " Link: " + self.theContent + "."
-                htmlFile.write("<a href=" + self.theContent + ">" +
-                               self.title + "</a>")
+                htmlFile.write("<a href=" + self.theContent + ">" + self.title + "</a><br>\n")
                 print(self.link)
                 self.inContent = False
                 self.theContent = ""
@@ -69,19 +68,11 @@ theHandler = myContentHandler()
 theParser.setContentHandler(theHandler)
 
 # Ready, set, go!
-htmlFile = open("barrapunto.html", "w")
-htmlFile.write("<head><meta http-equiv='Content-Type' content='text/html;" +
-               "charset=utf-8'/></head><br>")              
+url = "barrapunto.html"
+htmlFile = open(url, "w")
+html= "<head><meta http-equiv='Content-Type'content='text/html;" + "charset=utf-8'/></head><br>"
+htmlFile.write(html)              
 xmlFile = open(sys.argv[1],"r")
 theParser.parse(xmlFile)
 htmlFile.close()
 print ("Parse complete")
-
-
-
-
-
-
-
-
-
